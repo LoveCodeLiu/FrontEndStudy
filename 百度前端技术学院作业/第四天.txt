@@ -1,0 +1,156 @@
+HTML:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body style="width: 700px" >
+    <div>
+        <h2>某某</h2>
+        <h4>求职意向：</h4>
+        <img src="1.jpg" alt="头像"
+             style="height: 170px; width: 120px;position: absolute;
+                top: 5px;margin-left: 560px">
+    </div>
+    <div>
+        <table class="HeadTable">
+            <tr>
+                <td width="100px">性别：</td>
+                <td width="200px" class="birth">出生年月：</td>
+                <td width="100px" class="from">籍贯：</td>
+            </tr>
+            <tr style="padding-top: 10px">
+                <td width="100px" class="nation">民族：</td>
+                <td width="200px" class="tel">电话：</td>
+                <td width="100px"><a class="email" href="1">邮件：</a></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="StudyHistory">
+        <div class="Heading">
+            <p class="HeadingWord">学历</p>
+        </div>
+        <div class="content">
+            <p>某某大学&nbsp;&nbsp;&nbsp;2031.9-2035.7&nbsp;&nbsp;&nbsp;某某学院某某系</p>
+            <p>主要课程：课程1，课程2，课程3</p>
+        </div>
+    </div>
+    <div class="Skills">
+        <div class="Heading">
+            <p class="HeadingWord">专业技能</p>
+        </div>
+        <div class="content">
+            <ul class="ul1">
+                <li>技能1：</li>
+                <li>技能2：</li>
+                <li>技能3：</li>
+            </ul>
+        </div>
+    </div>
+    <div class="Experience">
+        <div class="Heading">
+            <p class="HeadingWord">项目经验</p>
+        </div>
+        <div class="content">
+            <p>项目名称：&nbsp;&nbsp;&nbsp;时间：</p>
+            <p>项目介绍：</p>
+            <p>项目中承担的工作：</p>
+        </div>
+    </div>
+    <div class="Award">
+        <div class="Heading">
+            <p class="HeadingWord">获得奖项</p>
+        </div>
+        <div class="content">
+            <ul class="ul2">
+                <li>奖项1</li>
+                <li>奖项2</li>
+                <li>奖项3</li>
+            </ul>
+        </div>
+    </div>
+    <div class="SelfEvaluation">
+        <div class="Heading">
+            <p class="HeadingWord">自我评价</p>
+        </div>
+        <div class="content">
+            <p></p>
+        </div>
+    </div>
+
+</body>
+</html>
+ 
+ CSS:
+ .Heading{
+    width: 700px;
+    background:burlywood;
+    border: 5px dotted;
+    border-bottom: solid;
+    border-left: 3px double red;
+    border-right: 4px double;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+.HeadingWord::first-letter{
+    font-size: 30px;
+}
+.email:link{
+    color: blue;
+}
+.email:visited{
+    color: gray;
+}
+.email:hover{
+    color: red;
+}
+.email:active{
+    color: orange;
+}
+.HeadingWord{
+    color: red;
+    font-weight: bold;
+    font-size: 18px;
+    text-shadow: 2px 2px green;
+    text-align: center;
+    margin-left: 200px;
+    margin-right: 200px;
+    background-color: deepskyblue;
+    background-origin: content-box;
+}
+.content{
+    color: blue;
+    text-decoration: underline;
+    margin-left: 10px;
+}
+.HeadTable td{
+    font-style: inherit;
+    color: purple;
+    font-size: 20px;
+}
+.content > ul{
+    background-color: green;
+}
+.nation + td{
+    font-size: 30px;
+    font-style: italic;
+    color: red;
+}
+.birth,.nation{
+    color: black !important;
+    font-size: 20px;
+}
+.HeadTable{
+    font-style: italic;
+    font-weight: bold;
+    color: orange;
+}
+.ul1{
+    list-style: square outside;
+}
+.ul2{
+    list-style: decimal inside;
+}
