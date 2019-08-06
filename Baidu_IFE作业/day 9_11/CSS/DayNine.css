@@ -7,6 +7,7 @@
     position: relative;
     padding: 1px;
     background: url("../resource/topBackground.png");
+    background-size: 100% 100%;
 }
 .topContent{
     position: absolute;
@@ -357,6 +358,7 @@
 .eighth img{
     margin-top: 20px;
 }
+
 
 
 
