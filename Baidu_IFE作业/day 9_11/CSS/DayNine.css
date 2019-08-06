@@ -3,9 +3,10 @@
 }
 .top{
     width: 100%;
-    height: 500px;
+    height: 600px;
     position: relative;
-    background-image: url("../resource/topBackground.png");
+    padding: 1px;
+    background: url("../resource/topBackground.png");
 }
 .topContent{
     position: absolute;
@@ -14,53 +15,68 @@
     width: 500px;
     top: 70px;
     left: calc((100% - 500px)/2);
+    text-align: center;
+}
+.topContent p:nth-child(2){
+    text-align: justify;
+    text-align-last: center;
+    display: inline-block;
 }
 .hello{
     text-align: center;
     color: white;
+    font-size: 40px;
 }
 .topText{
     text-align: center;
     margin-top: 20px;
-    color: antiquewhite;
+    color: grey;
 }
 .register{
     box-sizing: border-box;
-    border: white 1px solid;
-    margin-top: 40px;
-    height: 120px;
+    border: grey 1px solid;
+    margin: 260px auto 0;
+    width: 600px;
 }
 .text1{
     text-align: center;
     color: white;
-    margin-top: 10px;
+    margin-top: 30px;
+    font-size: 0.7em;
 }
 .text2{
     text-align: center;
-    color: black;
+    color: grey;
     font-size: 0.4em;
+    margin-top: 10px;
 }
 .signDiv{
     text-align: center;
     margin-top: 20px;
+    /*margin-left: 50px;*/
+    margin-bottom: 30px;
+
 }
 .account-input,.password-input{
     background: transparent;
     width: 150px;
-    height: 20px;
+    height: 30px;
     text-indent: 5px;
-    border: white 1px solid;
+    border: grey 1px solid;
 }
 .password-input{
     margin-left: 20px;
 }
 .sign-button{
-    height: 27px;
+    height: 30px;
     width: 100px;
     margin-left: 20px;
     text-align: center;
     font-size: 0.5em;
+    background-color: white;
+    color: black;
 }
+
 .second{
     width: 100%;
     height: 400px;
