@@ -64,15 +64,26 @@ html,body{
     margin-left: 20px;
     width: 190px;
 }
-.name-setting p{
-    display: inline;
+.div2 .name-setting{
+    height: 16px;
+    display: flex;
+    flex-flow: row wrap;
+}
+.div2 .name-setting p{
+    flex: 1;
     color: grey;
 }
-.name-setting img{
-    float: right;
+.div2 .name-setting img{
+    flex: 0;
+    max-height: 16px;
+}
+.name-digit{
+    height: 20px;
+    display: flex;
+    flex-flow: row wrap;
 }
 .name-digit p:nth-child(1){
-    display: inline;
+    flex: 1;
 }
 .name-digit p:nth-child(2){
     float: right;
