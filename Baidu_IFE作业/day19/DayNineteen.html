@@ -52,12 +52,12 @@
             // const list = document.getElementById(sectionId).getElementsByTagName("span");
 
             //方法二
-            const list = document.querySelector("#"+sectionId).querySelectorAll("span");
+            const list = document.querySelector('#'+sectionId).querySelectorAll('span');
 
             //方法一和方法二下面的步骤相同，写在一起了
             let res = [];
             let index = 0;
-            for (let i=0;i<list.size;i++){
+            for (let i=0;i<list.length;i++){
                 if (list[i].innerHTML === "HTML"){
                     res[index++] = list[i];
                 }
@@ -77,7 +77,7 @@
             //方法一和方法二下面的步骤相同，写在一起了
             let res = [];
             let index = 0;
-            for (let i=0;i<list.size;i++){
+            for (let i=0;i<list.length;i++){
                 if (list[i].childNodes[0].innerHTML === spanCont){
                     res[index++] = list[i];
                 }
