@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="news-top" class="section">
+            <h3>Some title</h3>
+            <div class="content">
+                <ul>
+                    <li><span>HTML</span><a href="">Some Link1</a></li>
+                    <li><span>JS</span><a class="active" href="">Some Link2</a></li>
+                    <li><span>CSS</span><a href="">Some Link3</a></li>
+                    <li><span>JS</span><a href="">Some Link4</a></li>
+                </ul>
+            </div>
+            <img src="">
+            <p class="">Some Text</p>
+        </div>
+        <div id="news-normal" class="section">
+            <h3>Some title</h3>
+            <div class="content">
+                <ul>
+                    <li><span>HTML</span><a href="">Some Link1</a></li>
+                    <li><span>HTML</span><a href="">Some Link2</a></li>
+                    <li><span>JS</span><a class="active" href="#">Some Link3</a></li>
+                    <li><span>CSS</span><a href="">Some Link4</a></li>
+                </ul>
+            </div>
+            <img src="">
+            <p class="">Some Text</p>
+        </div>
+    </div>
+    <script>
+
+        function getAllListItem() {
+            // 返回页面中所有li标签
+
+            //方法一
+            // return document.getElementsByTagName("li");
+
+            //方法二
+            return document.querySelectorAll("li");
+        }
+
+        function findAllHtmlSpanInOneSection(sectionId) {
+            // 返回某个section下所有span中内容为HTML的span标签
+
+            //方法一
+            // const list = document.getElementById(sectionId).getElementsByTagName("span");
+
+            //方法二
+            const list = document.querySelector("#"+sectionId).querySelectorAll("span");
+
+            //方法一和方法二下面的步骤相同，写在一起了
+            let res = [];
+            let index = 0;
+            for (let i=0;i<list.size;i++){
+                if (list[i].innerHTML === "HTML"){
+                    res[index++] = list[i];
+                }
+            }
+            return res;
+        }
+
+        function findListItem(sectionId, spanCont) {
+            // 返回某个section下，所有所包含span内容为spanCont的LI标签
+
+            //方法一
+            // const list = document.getElementById(sectionId).getElementsByTagName("li");
+
+            //方法二
+            const list = document.querySelector("#"+sectionId).querySelectorAll("li");
+
+            //方法一和方法二下面的步骤相同，写在一起了
+            let res = [];
+            let index = 0;
+            for (let i=0;i<list.size;i++){
+                if (list[i].childNodes[0].innerHTML === spanCont){
+                    res[index++] = list[i];
+                }
+            }
+            return res;
+        }
+
+        function getActiveLinkContent(sectionId) {
+            // 返回某个section下，class为active的链接中包含的文字内容
+
+            //方法一
+            // return document.getElementById("news-normal").getElementsByClassName("active")[0].innerHTML;
+
+            //方法二
+            return document.querySelector("#"+sectionId).querySelectorAll(".active")[0].innerHTML;
+        }
+
+    </script>
+</body>
+</html>
