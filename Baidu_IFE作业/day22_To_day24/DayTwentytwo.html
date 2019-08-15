@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    <input id="name-input" placeholder="请输入name" type="text"><button id="name-button">通过name查找id</button><p id="name-res"></p>
+</div>
+<div>
+    <input id="id-input" placeholder="请输入id" type="text"><button id="id-button">通过id查找name</button><p id="id-res"></p>
+</div>
+<p id="PreOrder">前序遍历：</p>
+<p id="InOrder">中序遍历：</p>
+<p id="PostOrder">后序遍历：</p>
+
+<script>
+
+    const tree = {
+        "id": 0,
+        "name": "root",
+        "left": {
+            "id": 1,
+            "name": "Simon",
+            "left": {
+                "id": 3,
+                "name": "Carl",
+                "left": {
+                    "id": 7,
+                    "name": "Lee",
+                    "left": {
+                        "id": 11,
+                        "name": "Fate"
+                    }
+                },
+                "right": {
+                    "id": 8,
+                    "name": "Annie",
+                    "left": {
+                        "id": 12,
+                        "name": "Saber"
+                    }
+                }
+            },
+            "right": {
+                "id": 4,
+                "name": "Tony",
+                "left": {
+                    "id": 9,
+                    "name": "Candy"
+                }
+            }
+        },
+        "right": {
+            "id": 2,
+            "name": "right",
+            "left": {
+                "id": 5,
+                "name": "Carl",
+            },
+            "right": {
+                "id": 6,
+                "name": "Carl",
+                "right": {
+                    "id": 10,
+                    "name": "Kai"
+                }
+            }
+        }
+    };
+    document.getElementById("name-button").onclick = function () {
+        document.getElementById("name-res").innerHTML =
+            findIdByName(document.getElementById("name-input").value);
+    };
+    //假设id和name均不会重复，根据输入name找到对应的id
+    function findIdByName(name) {
+        return SearchIdByName(tree,name);
+    }
+    function SearchIdByName(node,name) {
+        let p,q;
+        if (node.name === name)
+            return node.id;
+        if (node.left !== undefined)
+            p = SearchIdByName(node.left,name);
+        if (node.right !== undefined)
+            q = SearchIdByName(node.right,name);
+        if (p !== undefined)return p;
+        if (q !== undefined)return q;
+    }
+
+    document.getElementById("id-button").onclick = function () {
+        document.getElementById("id-res").innerHTML =
+            findNameById(document.getElementById("id-input").value);
+        console.log((document.getElementById("id-input").value));
+    };
+    //假设id和name均不会重复，根据输入id找到对应的name
+    function findNameById(id) {
+        return SearchNameById(tree,id);
+    }
+    function SearchNameById(node,id) {
+        let p,q;
+        if (node.id+"" === id)
+            return node.name;
+        if (node.left !== undefined)
+            p = SearchNameById(node.left,id);
+        if (node.right !== undefined)
+            q = SearchNameById(node.right,id);
+        if (p !== undefined)return p;
+        if (q !== undefined)return q;
+    }
+
+    document.getElementById("PreOrder").innerHTML += getListWithDLR().join("->");
+    //把这个对象中所有的名字以“前序遍历”的方式全部输出到console中
+    function getListWithDLR() {
+        let stack = [];
+        let PreOrderList = [];
+        stack.push(tree);
+        while (stack.length !== 0){
+            let node = stack.pop();
+            PreOrderList.push(node.name);
+            if (node.right !== undefined){
+                stack.push(node.right);
+            }
+            if (node.left !== undefined){
+                stack.push(node.left);
+            }
+        }
+        return PreOrderList;
+    }
+
+    document.getElementById("InOrder").innerHTML += getListWithLDR().join("->");
+    //把这个对象中所有的名字以“中序遍历”的方式全部输出到console中
+    function getListWithLDR() {
+        let stack = [];
+        let InOrderList = [];
+        let node = tree;
+        while (node !== undefined || stack.length !== 0){
+            if (node !== undefined){
+                stack.push(node);
+                node = node.left;
+            } else {
+                node = stack.pop();
+                InOrderList.push(node.name);
+                node = node.right;
+            }
+        }
+        return InOrderList;
+    }
+
+    document.getElementById("PostOrder").innerHTML += getListWithLRD().join("->");
+    //把这个对象中所有的名字以“后序遍历”的方式全部输出到console中
+    //参考于：https://blog.csdn.net/xiezongsheng1990/article/details/79672406
+    function getListWithLRD() {
+        let stack = [];
+        let PostOrderList = [];
+        let node = tree;
+        let pre = null;
+        while (node !== undefined || stack.length > 0){
+            if (node !== undefined){
+                stack.push(node);
+                node = node.left;
+            } else {
+                if (stack.length === 0) return PostOrderList;
+                node = stack[stack.length-1];
+                if (node.right === undefined || node.right === pre){
+                    stack.pop();
+                    PostOrderList.push(node.name);
+                    pre = node;
+                    node = undefined
+                } else {
+                  node = node.right;
+                }
+            }
+        }
+        return PostOrderList;
+    }
+
+</script>
+</body>
+</html>
