@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p>请顺序选择时间，选择框依次为：年，月，日，小时，分钟，秒</p>
+    <p>全部选择完成后按钮才可点击</p>
+    <select id="year-select">
+        <option>点击选择年份</option>
+    </select>
+
+    <select id="month-select">
+        <option>请先选择年份</option>
+    </select>
+
+    <select id="day-select">
+        <option>请先选择月份</option>
+    </select>
+
+    <select id="hour-select">
+        <option>请先选择天</option>
+    </select>
+
+    <select id="minute-select">
+        <option>请先选择小时</option>
+    </select>
+
+    <select id="second-select">
+        <option>请先选择分钟</option>
+    </select>
+
+    <button id="confirm-button">确认选择，计算时间</button>
+
+    <p id="now-time"></p>
+    <p id="result-wrapper"></p>
+    <p id="clock" style="margin-top: 100px"></p>
+<script>
+    const YearSelect = document.getElementById("year-select");
+    const MonthSelect = document.getElementById("month-select");
+    const DaySelect = document.getElementById("day-select");
+    const HourSelect = document.getElementById("hour-select");
+    const MinuteSelect = document.getElementById("minute-select");
+    const SecondSelect = document.getElementById("second-select");
+    const btn = document.getElementById("confirm-button");
+    const NowTime = document.getElementById("now-time");
+    const res = document.getElementById("result-wrapper");
+    const clock = document.getElementById("clock");
+
+    btn.disabled = true;
+    let SelectDate = new Date();
+
+    setInterval(SetClock,1000);
+    function SetClock(){
+        clock.innerHTML = "时钟: "+GetTime(new Date());
+    }
+
+    GetYear();
+    function GetYear() {
+        AddSelect(YearSelect,2000,2030);
+        YearSelect.onchange = function () {
+            SelectDate.setFullYear(YearSelect.options[YearSelect.selectedIndex].value);
+            GetMonth();
+        }
+    }
+    function GetMonth() {
+        AddSelect(MonthSelect,1,12);
+        MonthSelect.onchange = function() {
+            SelectDate.setMonth(MonthSelect.options[MonthSelect.selectedIndex].value-1);
+            GetDay(SelectDate.getFullYear(),SelectDate.getMonth());
+        }
+    }
+    function GetDay(year,month) {
+        month++;
+        let date = new Date(year,month,0);
+        let days = date.getDate();
+        AddSelect(DaySelect,1,days);
+        DaySelect.onchange = function (){
+            SelectDate.setDate(DaySelect.options[DaySelect.selectedIndex].value);
+            GetHour();
+        }
+    }
+    function GetHour() {
+        AddSelect(HourSelect,0,23);
+        HourSelect.onchange  = function (){
+            SelectDate.setHours(HourSelect.options[HourSelect.selectedIndex].value);
+            GetMinute();
+        }
+    }
+    function GetMinute() {
+        AddSelect(MinuteSelect,0,59);
+        MinuteSelect.onchange = function (){
+            SelectDate.setMinutes(MinuteSelect.options[MinuteSelect.selectedIndex].value);
+            GetSecond();
+        }
+    }
+    function GetSecond() {
+        AddSelect(SecondSelect,0,59);
+        SecondSelect.onchange = function () {
+            SelectDate.setSeconds(SecondSelect.options[SecondSelect.selectedIndex].value);
+            btn.disabled = false;
+        }
+    }
+    function AddSelect(SelectId,from,to) {
+        let len = SelectId.childNodes.length;
+        for (let i = 0;i<len;i++){
+            SelectId.options.remove(0);
+        }
+        SelectId.options.add(new Option("-1","-1"));
+        for (let i = from;i<=to;i++) {
+            let item = new Option(i+"",i+"");
+            SelectId.options.add(item);
+        }
+    }
+    btn.onclick = function () {
+        let now = new Date();
+        NowTime.innerHTML = "确认选择时当前时间: " + GetTime(now);
+        let differ = now.getTime() - SelectDate.getTime();
+        let ans = differ>0?"已经过去 ":"还有 ";
+        differ = Math.abs(differ);
+        let days = Math.floor(differ/(24*3600*1000));
+        let remain = differ%(24*3600*1000);
+        let hours = Math.floor(remain/(3600*1000));
+        remain %= 3600*1000;
+        let minute = Math.floor((remain/(60*1000)));
+        remain %= 60*1000;
+        let second = remain/1000;
+        res.innerHTML = "距离"+ GetTime(SelectDate)+ ans+days+"天"+hours+"小时"+
+                            minute+"分"+second+"秒";
+    };
+    let week = ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+    /**
+     * @return {string}
+     */
+    function GetTime(date) {
+        let time = "";
+        time += date.getFullYear() + "年";
+        time += GetFullText(date.getMonth()+1) + "月";
+        time += GetFullText(date.getDate()) + "日";
+        time += week[date.getDay()]+" ";
+        time += GetFullText(date.getHours()) + ":";
+        time += GetFullText(date.getMinutes()) + ":";
+        time += GetFullText(date.getSeconds()) + " ";
+        return time;
+    }
+    function GetFullText(n) {
+        if (n < 10)
+            n = "0" + n;
+        return n;
+    }
+
+
+</script>
+</body>
+</html>
