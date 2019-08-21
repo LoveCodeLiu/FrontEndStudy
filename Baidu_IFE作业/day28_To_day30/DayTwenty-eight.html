@@ -15,9 +15,9 @@
     const list = document.getElementById("email-sug-wrapper");
     input.style.width = "200px";
     input.style.textIndent = "10px";
-    list.style.width = "200px";
+    list.style.width = "205px";
     list.style.listStyle = "none";
-    list.style.margin = "0 0 0 10px";
+    list.style.margin = "0";
     list.style.padding = "0";
     let prefix;
     let NowSelectTipIndex = 0;
@@ -72,6 +72,7 @@
             let li = document.createElement("li");
             if (hint === "" || match(hint,postfixList[i])) {
                 li.innerHTML = prefix + "@" + postfixList[i];
+                li.style.paddingLeft = "10px";
                 console.log(li.innerHTML);
                 li.onmouseover = function () {
                     li.style.background = "#00BFFF";
