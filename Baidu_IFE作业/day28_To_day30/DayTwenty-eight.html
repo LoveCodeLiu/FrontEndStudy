@@ -6,8 +6,11 @@
 </head>
 <body>
 <div class="wrapper">
-    <input id="email-input" type="text" autofocus="autofocus">
-    <ul id="email-sug-wrapper" class="email-sug"></ul>
+    <div style="width: 200px;margin: 0 auto">
+        <p>输入提示框：</p>
+        <input id="email-input" type="text" autofocus="autofocus">
+        <ul id="email-sug-wrapper" class="email-sug"></ul>
+    </div>
 </div>
 <script>
     let postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
@@ -15,6 +18,7 @@
     const list = document.getElementById("email-sug-wrapper");
     input.style.width = "200px";
     input.style.textIndent = "10px";
+    input.style.border = "gray solid 1px";
     list.style.width = "205px";
     list.style.listStyle = "none";
     list.style.margin = "0";
